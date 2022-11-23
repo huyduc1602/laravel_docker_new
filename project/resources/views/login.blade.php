@@ -18,20 +18,52 @@
         <h2>ログイン</h2>
     </div>
     <div class="container">
-        <form action="" method="post" class="form-horizontal">
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">ID</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control">
+        <div class="login-form">
+            <form action="" method="post" class="form-horizontal">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">ID</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">パスワード</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control">
+                </div>
             </div>
+            <button type="submit" class="button-login">ログイン</button>
+            </form>
         </div>
-        </form>
+        <h3 class="text-center">新着のお知らせ</h3>
+        <div class="log">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                <th scope="col">配信日</th>
+                <th scope="col">タイトル</th>
+                <th scope="col">表示</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">2018年12月20日</th>
+                    <td>○○機能の追加</td>
+                    <td><a href="">詳接</a></td>
+                    </tr>
+                    <tr>
+                    <th scope="row">2018年12月13日</th>
+                    <td>△△機能の障害について</td>
+                    <td><a href="">詳接</a></td>
+                    </tr>
+                    <tr>
+                    <th scope="row">2018年12月6日</th>
+                    <td>口口についてのお知らせ</td>
+                    <td><a href="">詳接</a></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
     </div>
 </body>
 @include('layout.footer')
