@@ -1,6 +1,0 @@
-{
-    "require": {
-        "laravel/ui": "^4.1",
-        "blade-ui-kit/blade-ui-kit": "^0.3.4"
-    }
-}
