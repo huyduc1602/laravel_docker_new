@@ -1,0 +1,16 @@
+.modal-content {
+    position: fixed;
+    width: 600px;
+    top: 300px;
+    bottom: 300px;
+    z-index: 100;
+    background-color: #EAF2FA !important;
+
+}
+
+.modal-content .notification {
+    border: transparent;
+    border-left: 5px solid #036EB8;
+    border-bottom: 1px solid #036EB8;
+    width: 100%;
+}

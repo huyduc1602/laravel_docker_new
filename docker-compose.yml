@@ -1,0 +1,52 @@
+version: "3.9"
+networks:
+  lrl:
+    driver: bridge
+services:
+  nginx:
+    image: nginx:1.23.1-alpine
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./src/public:/var/www/laravel/public
+    links:
+      - phpfpm
+    depends_on:
+      - phpfpm
+    networks:
+      - lrl
+  phpfpm:
+    build:
+      context: php
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/var/www/laravel
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root123
+      - REDIS_HOST=redis
+    networks:
+      - lrl
+  mysql:
+    image: mysql:8.0.30
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - "3406:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_DATABASE=ids
+    networks:
+      - lrl
+  redis:
+    image: redis:5.0-alpine
+    ports:
+      - "5379:6379"
+    networks:
+      - lrl
