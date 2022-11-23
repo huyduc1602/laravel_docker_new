@@ -1,0 +1,40 @@
+body {
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+    background-color: #036EB8;
+    color: white;
+    margin-bottom: 0 !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 0;
+    text-align: center;
+    background-color: #81B2DF;
+    color: white;
+    po
+}
+
+.container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.container .form-horizontal {
+    text-align: center;
+}
+
+.container .form-group {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.container .form-group .form-control {
+    width: 200px;
+    margin-right: 100px;
+}
