@@ -67,7 +67,7 @@
         </div>
     </div>
     <p><a href="">パスワードをお忘れの方</a></p>
-    @include('notification_detail')
 </body>
 @include('layout.footer')
+@include('notification_detail')
 </html>
