@@ -27,10 +27,10 @@ services:
     depends_on:
       - mysql
     environment:
-      - DB_HOST = mysql
-      - MYSQL_USER = root
-      - MYSQL_PASSWORD = root123
-      - REDIS_HOST = redis
+      - DB_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root123
+      - REDIS_HOST=redis
     networks:
       - lrl
   mysql:
