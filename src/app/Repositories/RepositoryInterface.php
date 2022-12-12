@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories
+namespace App\Repositories;
 
 interface RepositoryInterface {
     public function findOne($id);

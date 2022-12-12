@@ -9,7 +9,7 @@ abstract class BaseRepository implements RepositoryInterface {
 
     public function __construct() {
         $this->setModel();
-    };
+    }
 
     abstract public function getModel();
 
@@ -20,15 +20,15 @@ abstract class BaseRepository implements RepositoryInterface {
     public function findOne($id) {
         $result = $this->_model->find($id);
         return $result;
-    };
+    }
 
     public function getAll(){
         return $this->_model->getAll();
-    };
+    }
 
     public function create(array $attributes){
         return $this->_model->create($attributes);
-    };
+    }
 
     public function delete($id){
         $target = $this->_model->find($id);
@@ -37,7 +37,7 @@ abstract class BaseRepository implements RepositoryInterface {
             return true;
         }
         return false;
-    };
+    }
 
     public function update($id,array $attributes){
         $target = $this->_model->find($id);
@@ -45,5 +45,5 @@ abstract class BaseRepository implements RepositoryInterface {
             return $this->_model->update($attributes);
         }
         return false;
-    };
+    }
 }
