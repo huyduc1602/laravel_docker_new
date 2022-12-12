@@ -16,4 +16,5 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () { return redirect()->to('/en/login');});
+Route::get('/', function () { return view('login');});
+Route::get('/login', function () { return view('login');});
