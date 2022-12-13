@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('mst_user', function (Blueprint $table) {
             $table->increments('id')->comment('ID');
             $table->string('user_name', 50)->comment('ユーザー名');
-            $table->integer('user_auth', 1)->comment('ユーザー権限');
+            $table->tinyInteger('user_auth')->comment('ユーザー権限');
             $table->string('email', 255)->comment('メールアドレス');
             $table->string('password', 255)->comment('パスワード');
             $table->datetime('update_pass_date')->comment('パスワード更新日');
-            $table->integer('update_pass_flg', 1)->default(0)->comment('パスワード更新フラグ');
+            $table->tinyInteger('update_pass_flg')->default(0)->comment('パスワード更新フラグ');
             $table->string('memo', 200)->comment('備考');
-            $table->integer('del_flg', 1)->default(0)->comment('削除フラグ');
-            $table->integer('version', 11)->default(1)->comment('バージョン');
+            $table->tinyInteger('del_flg')->default(0)->comment('削除フラグ');
+            $table->integer('version')->default(1)->comment('バージョン');
             $table->datetime('create_date')->comment('作成日時');
             $table->string('create_function', 10)->comment('作成機能ID');
             $table->string('create_user', 255)->comment('作成者ID');
