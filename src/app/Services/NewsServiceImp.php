@@ -3,42 +3,46 @@
 namespace App\Services;
 
 use App\Repositories\NewsRepository;
-use App\Services\NewsServiceInterface;
 
-class NewsServiceImp implements NewsServiceInterface {
+class NewsServiceImp implements NewsServiceInterface
+{
 
-    public function __construct(NewsRepository $newsRepository){
+    private NewsRepository $newsRepository;
+
+    public function __construct(NewsRepository $newsRepository)
+    {
         $this->newsRepository = $newsRepository;
     }
 
-    public function findOne($id) {
-        $news = $this->newsRepository->findOne($id);
-        return $news;
+    public function findOne($id)
+    {
+        return $this->newsRepository->findOne($id);
     }
 
-    public function getAll() {
-        $news = $this->newsRepository->findAll();
-        return $news;
+    public function getAll()
+    {
+        return $this->newsRepository->getAll();
     }
 
-    public function create($data) {
-        $news = $this->newsRepository->create($data);
-        return $news;
+    public function create($data)
+    {
+        return $this->newsRepository->create($data);
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $news = $this->newsRepository->delete($id);
     }
 
-    public function update($id, $data) {
-        $news = $this->newsRepository->update($id, $data);
-        return $news;
+    public function update($id, $data): bool
+    {
+        return $this->newsRepository->update($id, $data);
     }
 
-    public function getNewsOf30Days() {
+    public function getNewsOf30Days()
+    {
         $today = strtotime(now());
         $After30Days = strtotime('+ 30 day', $today);
-        $news = $this->newsRepository->getNewsBetween2Day($today, $After30Days);
-        return $news;
+        return $this->newsRepository->getNewsBetween2Day($today, $After30Days);
     }
 }

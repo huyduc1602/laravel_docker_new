@@ -3,10 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class LoginRequest extends FormRequest
 {
+    public mixed $password;
+    public mixed $id;
+
     /**
      * Determine if the user is authorized to make this request.
      *

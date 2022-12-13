@@ -3,42 +3,48 @@
 namespace App\Services;
 
 use App\Repositories\UserRepository;
-use App\Services\UserServiceInterface;
 
-class UserServiceImp implements UserServiceInterface {
+class UserServiceImp implements UserServiceInterface
+{
 
-    public function __construct(UserRepository $userRepository){
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
         $this->userRepository = $userRepository;
     }
 
-    public function findOne($id) {
-        $user = $this->userRepository->findOne($id);
-        return $user;
+    public function findOne($id)
+    {
+        return $this->userRepository->findOne($id);
     }
 
-    public function getAll() {
-        $users = $this->userRepository->findAll();
-        return $users;
+    public function getAll()
+    {
+        return $this->userRepository->getAll();
     }
 
-    public function create($data) {
-        $user = $this->userRepository->create($data);
-        return $user;
+    public function create($data)
+    {
+        return $this->userRepository->create($data);
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $user = $this->userRepository->delete($id);
     }
 
-    public function update($id, $data) {
-        $user = $this->userRepository->update($id, $data);
-        return $user;
+    public function update($id, $data): bool
+    {
+        return $this->userRepository->update($id, $data);
     }
 
-    public function checkUserByEmailPassword($email, $password) {
+    public function checkUserByEmailPassword($email, $password): bool
+    {
         $user = $this->userRepository->findByEmail($email);
-        if($user->password != $password)
+        if ($user->password != $password) {
             return false;
+        }
         return $user;
     }
 }

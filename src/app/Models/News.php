@@ -12,6 +12,6 @@ class News extends Model
     protected $table = 'dtb_news';
 
     protected $fillable = [
-        
+
     ];
 }

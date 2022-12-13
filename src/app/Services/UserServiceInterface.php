@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
-interface UserServiceInterface {
+interface UserServiceInterface
+{
     public function checkUserByEmailPassword($email, $password);
 }
