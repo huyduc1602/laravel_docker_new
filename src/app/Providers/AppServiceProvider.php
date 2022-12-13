@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\NewsRepository;
+use App\Repositories\UserRepository;
+use App\Repositories\RepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // $this->app->singleton(
+        //     NewsRepository::class,
+        //     UserRepository::class,
+        // );
     }
 
     /**
