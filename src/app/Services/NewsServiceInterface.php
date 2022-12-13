@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
-interface NewsServiceInterface {
+interface NewsServiceInterface
+{
     public function getNewsOf30Days();
 }

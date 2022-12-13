@@ -2,46 +2,59 @@
 
 namespace App\Repositories;
 
-use App\Repositories\RepositoryInterface;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
-abstract class BaseRepository implements RepositoryInterface {
+abstract class BaseRepository implements RepositoryInterface
+{
     protected $_model;
 
-    public function __construct() {
+    /**
+     * @throws BindingResolutionException
+     */
+    public function __construct()
+    {
         $this->setModel();
     }
 
     abstract public function getModel();
 
-    public function setModel(){
+    /**
+     * @throws BindingResolutionException
+     */
+    public function setModel()
+    {
         $this->_model = app()->make($this->getModel());
     }
 
-    public function findOne($id) {
-        $result = $this->_model->find($id);
-        return $result;
+    public function findOne($id)
+    {
+        return $this->_model->find($id);
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         return $this->_model->getAll();
     }
 
-    public function create(array $attributes){
+    public function create(array $attributes)
+    {
         return $this->_model->create($attributes);
     }
 
-    public function delete($id){
+    public function delete($id): bool
+    {
         $target = $this->_model->find($id);
-        if($target){
+        if ($target) {
             $target->delete();
             return true;
         }
         return false;
     }
 
-    public function update($id,array $attributes){
+    public function update($id, array $attributes): bool
+    {
         $target = $this->_model->find($id);
-        if($target){
+        if ($target) {
             return $this->_model->update($attributes);
         }
         return false;

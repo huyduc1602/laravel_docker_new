@@ -2,15 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Repositories\BaseRepository;
 use App\Models\User;
 
-class UserRepository extends BaseRepository {
-    public function getModel(){
+class UserRepository extends BaseRepository
+{
+    public function getModel(): string
+    {
         return User::class;
     }
 
-    public function getByEmail($email){
-        return $this->_model->where('email',$email)->first();
+    public function findByEmail($email)
+    {
+        return $this->_model->where('email', $email)->first();
     }
 }

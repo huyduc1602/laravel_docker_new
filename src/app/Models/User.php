@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -15,7 +14,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable
-     * 
+     *
      * @var array<int,string>
      */
     protected $fillable = [
@@ -25,7 +24,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * 
+     *
      * @var array<int,string>
      */
     protected $hidden = [
@@ -33,7 +32,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * 
+     *
      * @var array<string,string>
      */
     protected $cast = [
@@ -42,12 +41,13 @@ class User extends Authenticatable
 
     /**
      * Auto encrypt password when update
-     * 
+     *
      * @param $value
-     * 
+     *
      * @return string
      */
-    public function setPasswordAttribute($value){
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = bcrypt($value);
     }
 }
