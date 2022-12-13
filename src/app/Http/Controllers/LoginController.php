@@ -33,18 +33,14 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        //Validation
-        $id = $request->id;
-        $password = $request->password;
-
         //Login processing
-        $user = $this->userService->checkUserByEmailPassword($id, $password);
+        $user = $this->userService->checkUserByEmailPassword($request->id, $request->password);
 
         //Login successful
         if ($user) {
             return $this->authenticated();
         }
-        return back()->withInput($id)->withErrors(['login_failed' => trans('auth.failed')]);
+        return back()->withInput($request->all())->withErrors(['login_failed' => trans('auth.failed')]);
     }
 
     protected function authenticated()

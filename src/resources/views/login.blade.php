@@ -1,73 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <!-- Bootstrap CSS -->
-    <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+@extends('layouts.app', ['activePage' => 'login', 'titlePage' => __('Login')])
 
-    <title>Document</title>
-</head>
-@include('header')
-<body>
-    <div class="header_label">
-        <h1>駐輪場オーナー管理システム</h1>
-        <h2>ログイン</h2>
-    </div>
-    <div class="container">
-        <div class="login-form">
-            <form action="" method="post" class="form-horizontal">
+@section('content')
+<div class="header_label">
+    <h1>駐輪場オーナー管理システム</h1>
+    <h2>ログイン</h2>
+</div>
+<div class="container">
+    <div class="login-form">
+        <form action="{{ route("login") }}" method="POST" class="form-horizontal">
+            @csrf
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">ID</label>
+                @if ($errors->has('email'))
+                    <div id="email-error" class="error text-danger pl-3" for="email"
+                         style="display: block;">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </div>
+                @endif
+                <label for="id" class="col-sm-3 col-form-label">ID</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control">
+                    <input type="email" name="id" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">パスワード</label>
+                @if ($errors->has('password'))
+                    <div id="password-error" class="error text-danger pl-3" for="password"
+                         style="display: block;">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </div>
+                @endif
+                <label for="password" class="col-sm-3 col-form-label">パスワード</label>
                 <div class="col-sm-9">
-                    <input type="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                 </div>
             </div>
+            @if ($errors->has('login_failed'))
+                <div id="password-error" class="error text-danger"
+                     style="display: block;">
+                    <strong>{{ $errors->first('login_failed') }}</strong>
+                </div>
+            @endif
             <button type="submit" class="button-login">ログイン</button>
-            </form>
-        </div>
-        <h3 class="text-center">新着のお知らせ</h3>
-        <div class="log">
-            <table class="table table-bordered" id="dtb_news">
+        </form>
+    </div>
+    <h3 class="text-center">新着のお知らせ</h3>
+    <div class="log">
+        <table class="table table-bordered" id="dtb_news">
             <thead>
-                <tr>
+            <tr>
                 <th scope="col">配信日</th>
                 <th scope="col">タイトル</th>
                 <th scope="col">表示</th>
-                </tr>
+            </tr>
             </thead>
             <tbody>
+            @foreach($news as $n)
                 <tr>
-                    <th scope="row" id="release_date">2018年12月20日</th>
-                    <td id="title">○○機能の追加</td>
-                    <td><a href="#myModal" data-bs-toggle="modal">詳細</a></td>
-                    </tr>
-                    <tr>
-                    <th scope="row" id="release_date">2018年12月13日</th>
-                    <td id="title">△△機能の障害について</td>
-                    <td><a href="#myModal" data-bs-toggle="modal">詳細</a></td>
-                    </tr>
-                    <tr>
-                    <th scope="row" id="release_date">2018年12月6日</th>
-                    <td id="title">口口についてのお知らせ</td>
-                    <td><a href="#myModal" data-bs-toggle="modal">詳細</a></td>
+                    <th scope="row" id="release_date">{{ $n->release_date }}</th>
+                    <td id="title">{{ $n->title }}</td>
+                    <td><button class="show" href='#' data-bs-target="#myModal" data-bs-toggle="modal" value="{{ $n->id }}">詳細</button></td>
                 </tr>
+            @endforeach
             </tbody>
-            </table>
-        </div>
+        </table>
     </div>
-    <p><a href="">パスワードをお忘れの方</a></p>
-</body>
-@include('footer')
-@include('notification_detail')
-</html>
+</div>
+<p><a href="">パスワードをお忘れの方</a></p>
+    @include('notification_detail')
+@endsection
+@push('js')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click', '.show', function (e) {
+                e.preventDefault();
+                const id = $(this).val();
+                $.ajax({
+                    url: '/news/' + id + '/show',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        $('#release_date').val(response.news.name)
+                        $('#title').val(response.news.title)
+                        $('#information').val(response.news.information)
+                    },
+                });
+            });
+        });
+    </script>
+@endpush
+

@@ -17,10 +17,11 @@ use App\Http\Controllers\NewsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/welcome', function () {return view('welcome');})->name('welcome');
 
 Route::group(['prefix' => 'login'], function() {
     Route::get('/', [LoginController::class, 'show'])->name('show');
-    Route::post('/', [LoginController::class, 'login'])->name('login');    
+    Route::post('/', [LoginController::class, 'login'])->name('login');
 });
 
 Route::group(['prefix' => 'news'], function() {

@@ -11,6 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'mst_user';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable
@@ -48,6 +49,6 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = crypt($value,$value);
     }
 }

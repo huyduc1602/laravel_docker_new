@@ -1,5 +1,5 @@
-<script>
-    $(document).ready(function() {
-        $("#myModal").modal("show");
-});
-</script>
+// <script>
+//     $(document).ready(function() {
+//         $("#myModal").modal("show");
+// });
+// </script>
