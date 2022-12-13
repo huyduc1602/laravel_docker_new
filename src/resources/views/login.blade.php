@@ -12,7 +12,7 @@
 
     <title>Document</title>
 </head>
-@include('layout.header')
+@include('header')
 <body>
     <div class="header_label">
         <h1>駐輪場オーナー管理システム</h1>
@@ -68,6 +68,6 @@
     </div>
     <p><a href="">パスワードをお忘れの方</a></p>
 </body>
-@include('layout.footer')
+@include('footer')
 @include('notification_detail')
 </html>
