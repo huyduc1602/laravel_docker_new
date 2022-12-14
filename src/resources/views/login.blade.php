@@ -22,21 +22,19 @@
                 </div>
             </div>
             <div class="form-group row">
-                @if ($errors->has('password'))
-                    <div id="password-error" class="error text-danger pl-3" for="password"
-                         style="display: block;">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </div>
-                @endif
                 <label for="password" class="col-sm-3 col-form-label">パスワード</label>
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control">
                 </div>
             </div>
+            @if ($errors->has('password'))
+                <div id="password-error" class="error text-danger h-fit" for="password">
+                    <p class="flex mb-0">{{ $errors->first('password') }}</p>
+                </div>
+            @endif
             @if ($errors->has('login_failed'))
-                <div id="password-error" class="error text-danger"
-                     style="display: block;">
-                    <strong>{{ $errors->first('login_failed') }}</strong>
+                <div id="password-error" class="error text-danger h-fit">
+                    <p>{{ $errors->first('login_failed') }}</p>
                 </div>
             @endif
             <button type="submit" class="button-login">ログイン</button>

@@ -59,7 +59,6 @@ h2 {
 
 .container .button-login {
     justify-content: center;
-    margin-top: 20px;
     background-color: #FF9A05;
     border: 2px solid #EE7E2D;
     border-radius: 5px;
@@ -122,4 +121,9 @@ p {
     padding: 20px;
     text-align: center;
     font-weight: 500;
+}
+
+#password-error {
+    margin-bottom: 0px !important;
+    display: block;
 }
