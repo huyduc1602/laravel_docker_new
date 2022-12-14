@@ -14,23 +14,23 @@ return new class extends Migration {
     {
         Schema::create('mst_user', function (Blueprint $table) {
             $table->increments('id')->comment('ID');
-            $table->string('user_name', 50)->comment('ユーザー名');
-            $table->tinyInteger('user_auth')->comment('ユーザー権限');
+            $table->string('user_name', 50)->comment('ユーザー名')->nullable();
+            $table->tinyInteger('user_auth')->comment('ユーザー権限')->nullable();
             $table->string('email', 255)->comment('メールアドレス');
             $table->string('password', 255)->comment('パスワード');
-            $table->datetime('update_pass_date')->comment('パスワード更新日');
-            $table->tinyInteger('update_pass_flg')->default(0)->comment('パスワード更新フラグ');
-            $table->string('memo', 200)->comment('備考');
+            $table->datetime('update_pass_date')->comment('パスワード更新日')->nullable();
+            $table->tinyInteger('update_pass_flg')->default(0)->comment('パスワード更新フラグ')->nullable();
+            $table->string('memo', 200)->comment('備考')->nullable();
             $table->tinyInteger('del_flg')->default(0)->comment('削除フラグ');
             $table->integer('version')->default(1)->comment('バージョン');
-            $table->datetime('create_date')->comment('作成日時');
-            $table->string('create_function', 10)->comment('作成機能ID');
-            $table->string('create_user', 255)->comment('作成者ID');
-            $table->string('create_name', 50)->comment('作成者');
-            $table->datetime('update_date')->comment('更新日時');
-            $table->string('update_function', 10)->comment('更新機能ID');
-            $table->string('update_user', 255)->comment('更新者ID');
-            $table->string('update_name', 50)->comment('更新者');
+            $table->datetime('create_date')->comment('作成日時')->nullable();
+            $table->string('create_function', 10)->comment('作成機能ID')->nullable();
+            $table->string('create_user', 255)->comment('作成者ID')->nullable();
+            $table->string('create_name', 50)->comment('作成者')->nullable();
+            $table->datetime('update_date')->comment('更新日時')->nullable();
+            $table->string('update_function', 10)->comment('更新機能ID')->nullable();
+            $table->string('update_user', 255)->comment('更新者ID')->nullable();
+            $table->string('update_name', 50)->comment('更新者')->nullable();
         });
     }
 

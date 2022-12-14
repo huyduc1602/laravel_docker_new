@@ -34,15 +34,15 @@ class NewsServiceImp implements NewsServiceInterface
         $news = $this->newsRepository->delete($id);
     }
 
-    public function update($id, $data): bool
+    public function update($id, $data)
     {
         return $this->newsRepository->update($id, $data);
     }
 
     public function getNewsOf30Days()
     {
-        $today = strtotime(now());
-        $After30Days = strtotime('+ 30 day', $today);
+        $today = now()->toDate()->format('Y-m-d');
+        $After30Days = now()->addDay(30)->toDate()->format('Y-m-d');
         return $this->newsRepository->getNewsBetween2Day($today, $After30Days);
     }
 }

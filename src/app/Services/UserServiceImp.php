@@ -34,17 +34,19 @@ class UserServiceImp implements UserServiceInterface
         $user = $this->userRepository->delete($id);
     }
 
-    public function update($id, $data): bool
+    public function update($id, $data)
     {
         return $this->userRepository->update($id, $data);
     }
 
-    public function checkUserByEmailPassword($email, $password): bool
+    public function checkUserByEmailPassword($email, $password)
     {
         $user = $this->userRepository->findByEmail($email);
-        if ($user->password != $password) {
-            return false;
+        if($user) {
+            if ($user->password == crypt($password,$password)) {
+                return $user;
+            }
         }
-        return $user;
+        return false;
     }
 }
