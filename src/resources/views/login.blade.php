@@ -10,28 +10,27 @@
         <form action="{{ route("login") }}" method="POST" class="form-horizontal">
             @csrf
             <div class="form-group row">
-                @if ($errors->has('email'))
-                    <div id="email-error" class="error text-danger pl-3" for="email"
-                         style="display: block;">
-                        <strong>{{ $errors->first('email') }}</strong>
+                <label for="email" class="col-sm-3 col-form-label">ID</label>
+                <div class="col-sm-9">
+                    <input name="id" class="form-control" />
+                    @if ($errors->has('id'))
+                    <div id="email-error" class="form-error" for="email" style="text-align : left; display : block">
+                        <strong class="error text-danger">{{ $errors->first('id') }}</strong>
                     </div>
                 @endif
-                <label for="id" class="col-sm-3 col-form-label">ID</label>
-                <div class="col-sm-9">
-                    <input type="email" name="id" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label">パスワード</label>
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control">
+                    @if ($errors->has('password'))
+                        <div id="password-error" class="form-error" for="password" style="text-align : left; display : block">
+                            <strong  class="error text-danger">{{ $errors->first('password') }}</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
-            @if ($errors->has('password'))
-                <div id="password-error" class="error text-danger h-fit" for="password">
-                    <p class="flex mb-0">{{ $errors->first('password') }}</p>
-                </div>
-            @endif
             @if ($errors->has('login_failed'))
                 <div id="password-error" class="error text-danger h-fit">
                     <p>{{ $errors->first('login_failed') }}</p>

@@ -117,13 +117,8 @@ h2 {
     width: 80px;
 }
 
-p {
-    padding: 20px;
-    text-align: center;
-    font-weight: 500;
-}
-
-#password-error {
-    margin-bottom: 0px !important;
+.form-error strong {
     display: block;
+    text-align: left;
+    color: #81B2DF !important;
 }
