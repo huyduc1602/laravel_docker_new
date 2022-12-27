@@ -1,11 +1,9 @@
 <?php
 
-use Illuminate\Auth\Events\Login;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +15,31 @@ use App\Http\Controllers\NewsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/welcome', function () {return view('welcome');})->name('welcome');
+Route::get('/', function () {
+    return redirect()->to('login');
+});
 
-Route::group(['prefix' => 'login'], function() {
+Route::get('/welcome', function () {
+    return view('welcome');
+})->middleware('auth')->name('welcome');
+
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => 'login'], function () {
     Route::get('/', [LoginController::class, 'show'])->name('show');
     Route::post('/', [LoginController::class, 'login'])->name('login');
 });
 
-Route::group(['prefix' => 'news'], function() {
-    Route::get('/{news}/show', [NewsController::class, 'show'])->name('news.show');
+Route::get('/password', function () {
+    return view('resetPassword');
+})->name('password.reset');
+//, 'middleware' => 'auth'
+Route::group(['prefix' => 'news', 'middleware' => 'auth'], function() {
+    Route::get('/', [NewsController::class, 'index'])->name('news'); //OK
+    Route::get('/list', [NewsController::class, 'getRecords'])->name('news.list'); //OK
+    Route::post('/create', [NewsController::class, 'create'])->name('news.create'); //OK
+    Route::get('/{news}/show', [NewsController::class, 'show'])->name('news.show'); //OK
+    Route::patch('/{news}', [NewsController::class, 'update'])->name('news.update'); //OK
+    Route::delete('/{news}', [NewsController::class, 'delete'])->name('news.delete'); //OK
+    Route::get('/search', [NewsController::class, 'search'])->name('news.search'); //OK
 });

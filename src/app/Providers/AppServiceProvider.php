@@ -17,10 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->singleton(
-        //     NewsRepository::class,
-        //     UserRepository::class,
-        // );
+        
     }
 
     /**

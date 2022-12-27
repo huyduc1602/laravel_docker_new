@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\HalfWidth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
@@ -25,8 +26,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|max:255',
-            'password' => 'required|min:8|max:32|alpha_num',
+            'username' => ['required','alpha_num','max:255', new HalfWidth],
+            'password' => ['required','between:8,32','alpha_num', new HalfWidth],
         ];
     }
 }
