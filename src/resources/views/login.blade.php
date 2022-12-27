@@ -9,34 +9,35 @@
     <div class="login-form">
         <form action="{{ route("login") }}" method="POST" class="form-horizontal">
             @csrf
+
             <div class="form-group row">
-                @if ($errors->has('email'))
-                    <div id="email-error" class="error text-danger pl-3" for="email"
-                         style="display: block;">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </div>
-                @endif
                 <label for="id" class="col-sm-3 col-form-label">ID</label>
                 <div class="col-sm-9">
                     <input type="email" name="id" class="form-control">
+                    @if ($errors->has('id'))
+                        <div id="email-error" class="error text-danger pl-3" for="email"
+                             style="display: block;">
+                            <strong>{{ $errors->first('id') }}</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="form-group row">
-                @if ($errors->has('password'))
-                    <div id="password-error" class="error text-danger pl-3" for="password"
-                         style="display: block;">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </div>
-                @endif
                 <label for="password" class="col-sm-3 col-form-label">パスワード</label>
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control">
+                    @if ($errors->has('password'))
+                        <div id="password-error" class="error text-danger pl-3" for="password"
+                             style="display: block;">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </div>
+                    @endif
                 </div>
             </div>
             @if ($errors->has('login_failed'))
                 <div id="password-error" class="error text-danger"
                      style="display: block;">
-                    <strong>{{ $errors->first('login_failed') }}</strong>
+                    <p>{{ $errors->first('login_failed') }}</p>
                 </div>
             @endif
             <button type="submit" class="button-login">ログイン</button>
@@ -55,8 +56,8 @@
             <tbody>
             @foreach($news as $n)
                 <tr>
-                    <th scope="row" id="release_date">{{ $n->release_date }}</th>
-                    <td id="title">{{ $n->title }}</td>
+                    <th scope="row">{{ $n->release_date }}</th>
+                    <td >{{ $n->title }}</td>
                     <td><button class="show" href='#' data-bs-target="#myModal" data-bs-toggle="modal" value="{{ $n->id }}">詳細</button></td>
                 </tr>
             @endforeach
@@ -81,6 +82,7 @@
                         $('#release_date').val(response.news.name)
                         $('#title').val(response.news.title)
                         $('#information').val(response.news.information)
+                        $('#link').val(response.news.url)
                     },
                 });
             });
