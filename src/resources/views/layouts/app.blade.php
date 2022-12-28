@@ -12,6 +12,8 @@
     <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <title>Login</title>
 </head>

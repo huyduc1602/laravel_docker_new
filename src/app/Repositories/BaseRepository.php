@@ -33,7 +33,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function getAll()
     {
-        return $this->_model->getAll();
+        return $this->_model->get();
     }
 
     public function create(array $attributes)
@@ -45,7 +45,8 @@ abstract class BaseRepository implements RepositoryInterface
     {
         $target = $this->_model->find($id);
         if ($target) {
-            $target->delete();
+            $target->del_flg = 1;
+            $target->save();
             return true;
         }
         return false;
@@ -55,7 +56,7 @@ abstract class BaseRepository implements RepositoryInterface
     {
         $target = $this->_model->find($id);
         if ($target) {
-            return $this->_model->update($attributes);
+            return $target->update($attributes);
         }
         return false;
     }

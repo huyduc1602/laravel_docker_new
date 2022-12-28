@@ -16,3 +16,4 @@ yarn-error.log
 mysql.sock
 db
 db_test
+composer.lock

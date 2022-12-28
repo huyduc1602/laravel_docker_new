@@ -15,6 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+            $request->session()->flash('unAuthorize', 'You need to login!');
             return route('login');
         }
     }

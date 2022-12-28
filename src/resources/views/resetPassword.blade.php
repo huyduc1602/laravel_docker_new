@@ -1,5 +1,6 @@
 @extends('layouts.app', ['activePage' => 'login', 'titlePage' => __('Login')])
 
 @section('content')
-    <button><a href="{{ route('logout') }}">Logout</a></button>
+    <button>Reset</button>
+    <button><a href="{{ route('login') }}">BACK</a></button>
 @endsection
