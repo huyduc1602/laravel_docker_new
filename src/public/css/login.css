@@ -5,13 +5,10 @@ body {
 }
 
 h1 {
-    text-align: center;
     background-color: #036EB8;
-    color: white;
     margin-bottom: 0 !important;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: 20px !important;
 }
 
 h2 {
@@ -55,6 +52,7 @@ h2 {
 .container .form-group .form-control {
     width: 80%;
     margin-right: 200px;
+
 }
 
 .container .button-login {
@@ -64,9 +62,10 @@ h2 {
     border-radius: 5px;
     width: 20%;
     color: white;
+    margin-top: 10px !important;
 }
 
-.container .text-center {
+.container h3 {
     text-align: center;
     margin-top: 20px;
     width: 80%;
@@ -117,8 +116,15 @@ h2 {
     width: 80px;
 }
 
-.form-error strong {
-    display: block;
-    text-align: left;
-    color: #81B2DF !important;
+.container .link {
+    margin-bottom: 50px !important;
+}
+
+.show {
+    background-color: #BFBFBF;
+    color: white;
+    border: 1px solid #A6A6A6;
+    border-radius: 5px;
+    padding: 5px 12px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }

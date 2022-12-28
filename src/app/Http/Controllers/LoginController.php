@@ -28,6 +28,7 @@ class LoginController extends Controller
             return redirect()->to('/welcome');
         }
         $news = $this->newsService->getNewsOf30Days();
+    
         return view('login', compact('news'));
     }
 

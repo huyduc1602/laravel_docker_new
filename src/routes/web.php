@@ -25,5 +25,13 @@ Route::group(['prefix' => 'login'], function() {
 });
 
 Route::group(['prefix' => 'news'], function() {
-    Route::get('/{news}/show', [NewsController::class, 'show'])->name('news.show');
-});
+        Route::get('/', [NewsController::class, 'index'])->name('news'); //OK
+        Route::get('/list', [NewsController::class, 'getRecords'])->name('news.list'); //OK
+        Route::post('/create', [NewsController::class, 'create'])->name('news.create'); //OK
+        Route::get('/{news}/show', [NewsController::class, 'show'])->name('news.show'); //OK
+        Route::patch('/{news}', [NewsController::class, 'update'])->name('news.update'); //OK
+        Route::delete('/{news}', [NewsController::class, 'delete'])->name('news.delete'); //OK
+        Route::get('/search', [NewsController::class, 'search'])->name('news.search'); //OK
+    });
+
+Route::get('/news', function () {return view('news');})->name('news');
