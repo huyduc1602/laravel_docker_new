@@ -55,6 +55,10 @@ return [
     'attributes' => [
         'username' => 'ユーザー名',
         'password' => 'パスワード',
+        'title' => 'タイトル',
+        'release_date' => '公開開始日',
+        'information' => 'お知らせ',
+        'url' => 'URL',
     ],
 
 ];
