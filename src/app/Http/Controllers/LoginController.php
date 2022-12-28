@@ -25,7 +25,7 @@ class LoginController extends Controller
     public function show()
     {
         if (Auth::check()) {
-            return redirect()->to('/welcome');
+            return redirect()->route('news');
         }
         $news = $this->newsService->getNewsOf30Days();
         return view('login', compact('news'));
@@ -47,6 +47,13 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
-        return redirect()->to('/news/');
+        return redirect()->route('news');
+    }
+
+    public function logOut()
+    {
+        //Logout processing
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

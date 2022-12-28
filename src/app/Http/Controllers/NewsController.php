@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewsRequest;
 use App\Services\NewsServiceImp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ class NewsController extends Controller
         if (Auth::check()) {
             return view('news.news');
         } else {
-            return redirect()->to('/en/login');
+            return redirect()->route('login');
         }
     }
 
@@ -31,10 +32,10 @@ class NewsController extends Controller
     {
         $news = $this->newsService->findOne($id);
         return ($news) ? response()->json([
-            'status' => 200,
+            'status' => config('constants.STATUS_OK'),
             'news' => $news,
         ]) : response()->json([
-            'status' => 404,
+            'status' => config('constants.STATUS_NOT_FOUND'),
             'msg' => 'Not Found',
         ]);
     }
@@ -46,12 +47,12 @@ class NewsController extends Controller
         $html = view('news.response', compact('news'))->render();
         if ($html !== null) {
             return response()->json([
-                'status' => 200,
+                'status' => config('constants.STATUS_OK'),
                 'record' => $html,
             ]);
         } else {
             return response()->json([
-                'status' => 403,
+                'status' => config('constants.STATUS_FORBIDDEN'),
                 'msg' => "Can't verify user's permission",
             ]);
         }
@@ -89,77 +90,64 @@ class NewsController extends Controller
 
             if (empty($news)) {
                 return response()->json([
-                    'status' => 403,
+                    'status' => config('constants.STATUS_NOT_FOUND'),
                     'msg' => "Not Found",
                 ]);
             }
             $html = view('news.response', compact('news'))->render();
 
             return response()->json([
-                'status' => 200,
+                'status' => config('constants.STATUS_OK'),
                 'record' => $html,
             ]);
         } else {
             return response()->json([
-                'status' => 404,
+                'status' => config('constants.STATUS_BAD_REQUEST'),
                 'msg' => "This function just support for GET method",
             ]);
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, NewsRequest $request)
     {
         $News = $this->newsService->findOne($id);
         if ($News) {
-            $request->validate([
-                'title' => ['required', 'max:255'],
-                'release_date' => ['required'],
-                'information' => ['max:255'],
-                'url' => ['max:100'],
-            ]);
             $attributes = $request->only(['title', 'release_date', 'information', 'url']);
             $updateNews = $this->newsService->update($id, $attributes);
 
             if ($updateNews) {
                 return response()->json([
-                    'status' => 201,
+                    'status' => config('constants.STATUS_CREATED'),
                     'msg' => 'Update successfully',
                 ]);
             } else {
                 return response()->json([
-                    'status' => 500,
+                    'status' => config('constants.STATUS_INTERNAL_SERVER_ERROR'),
                     'msg' => "Can't update this news"
                 ]);
             }
         } else {
             return response()->json([
-                'status' => 404,
+                'status' => config('constants.STATUS_NOT_FOUND'),
                 'msg' => "Not Found News with id : {$id}"
             ]);
         }
     }
 
-    public function create(Request $request)
+    public function create(NewsRequest $request)
     {
-        $request->validate([
-            'title' => ['required', 'max:255'],
-            'release_date' => ['required'],
-            'information' => ['max:255'],
-            'url' => ['max:100'],
-        ]);
-
         $attributes = $request->all();
         $createNews = $this->newsService->create($attributes);
 
         if ($createNews) {
             return response()->json([
-                'status' => 200,
+                'status' => config('constants.STATUS_OK'),
                 'news' => $createNews,
                 'msg' => 'Create successfully',
             ]);
         } else {
             return response()->json([
-                'status' => 500,
+                'status' => config('constants.STATUS_INTERNAL_SERVER_ERROR'),
                 'msg' => "Can't create this news"
             ]);
         }
@@ -170,12 +158,12 @@ class NewsController extends Controller
         $isSuccess = $this->newsService->delete($id);
         if ($isSuccess) {
             return response()->json([
-                'status' => 200,
+                'status' => config('constants.STATUS_OK'),
                 'msg' => 'Deleted Success'
             ]);
         } else {
             return response()->json([
-                'status' => 500,
+                'status' => config('constants.STATUS_INTERNAL_SERVER_ERROR'),
                 'msg' => "Can't remove this news"
             ]);
         }

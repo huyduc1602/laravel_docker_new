@@ -23,7 +23,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 })->middleware('auth')->name('welcome');
 
-Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logOut'])->name('logout');
 
 Route::group(['prefix' => 'login'], function () {
     Route::get('/', [LoginController::class, 'show'])->name('show');
@@ -34,7 +34,7 @@ Route::get('/password', function () {
     return view('resetPassword');
 })->name('password.reset');
 //, 'middleware' => 'auth'
-Route::group(['prefix' => 'news', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'news'], function() {
     Route::get('/', [NewsController::class, 'index'])->name('news'); //OK
     Route::get('/list', [NewsController::class, 'getRecords'])->name('news.list'); //OK
     Route::post('/create', [NewsController::class, 'create'])->name('news.create'); //OK
