@@ -4,5 +4,5 @@ namespace App\Services;
 
 interface UserServiceInterface
 {
-    public function checkUserByEmailPassword($email, $password);
+    public function checkUserByUsernamePassword($username, $password);
 }

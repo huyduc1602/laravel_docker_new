@@ -6,7 +6,7 @@ use App\Rules\HalfWidth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
-class LoginRequest extends FormRequest
+class NewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,10 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required','alpha_num','max:255', new HalfWidth],
-            'password' => ['required','between:8,32','alpha_num', new HalfWidth],
+            'title' => ['required', 'max:255'],
+            'release_date' => ['required'],
+            'information' => ['max:255'],
+            'url' => ['max:100'],
         ];
     }
 }

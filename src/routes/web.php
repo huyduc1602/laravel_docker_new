@@ -1,11 +1,9 @@
 <?php
 
-use Illuminate\Auth\Events\Login;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +15,25 @@ use App\Http\Controllers\NewsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/welcome', function () {return view('welcome');})->name('welcome');
+Route::get('/', function () {
+    return redirect()->to('login');
+});
 
-Route::group(['prefix' => 'login'], function() {
+Route::get('/welcome', function () {
+    return view('welcome');
+})->middleware('auth')->name('welcome');
+
+Route::get('/logout', [LoginController::class, 'logOut'])->name('logout');
+
+Route::group(['prefix' => 'login'], function () {
     Route::get('/', [LoginController::class, 'show'])->name('show');
     Route::post('/', [LoginController::class, 'login'])->name('login');
 });
 
+Route::get('/password', function () {
+    return view('resetPassword');
+})->name('password.reset');
+//, 'middleware' => 'auth'
 Route::group(['prefix' => 'news'], function() {
         Route::get('/', [NewsController::class, 'index'])->name('news'); //OK
         Route::get('/list', [NewsController::class, 'getRecords'])->name('news.list'); //OK
