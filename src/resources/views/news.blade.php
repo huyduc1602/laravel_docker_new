@@ -239,7 +239,7 @@
       </div>
       <div class="modal-body ms-4 text-center">
         <div>
-            <i data-feather="alert-triangle" class="warning feather-32"></i>
+            <i data-feather="alert-triangle" class="icon-warning feather-32"></i>
                 <script>
                     feather.replace()
                 </script>

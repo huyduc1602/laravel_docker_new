@@ -57,7 +57,7 @@
             
                     <th scope="row" id="release_date">{{ $n->release_date }}</th>
                     <td id="title" class="px-2">{{ $n->title }}</td>
-                    <td><button class="show" href='#' data-bs-target="#myModal" data-bs-toggle="modal" value="{{ $n->id }}">詳細</button></td>
+                    <td><button class="show-modal" href='#' data-bs-target="#myModal" data-bs-toggle="modal" value="{{ $n->id }}">詳細</button></td>
                 </tr>
             @endforeach
             </tbody>
