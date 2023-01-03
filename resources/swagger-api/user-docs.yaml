@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: 'HR Frontier'
+  description: 'This is a documentation of HR_Frontier API.'
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8006/api/user'
+    description: 'Localhost api'
+paths:
+  /auth/register:
+    $ref: 'user-docs/auth.yaml#/~1register'
+  /auth/login:
+    $ref: 'user-docs/auth.yaml#/~1login'
+  /auth/logout:
+    $ref: 'user-docs/auth.yaml#/~1logout'
+  /auth/me:
+    $ref: 'user-docs/auth.yaml#/~1me'
+  /auth/refresh:
+    $ref: 'user-docs/auth.yaml#/~1refresh'
+  /facilities:
+    $ref: 'user-docs/facilities.yaml#/~1list'
+  /facilities/detail:
+    $ref: 'user-docs/facilities.yaml#/~1detail'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+tags:
+  - name: Authentication
+    description: 'Check user has logged or not'
+  - name: Facilities
+    description: 'Apis for facilities'
+externalDocs:
+  description: 'Find out more about Swagger'
+  url: 'http://swagger.io'

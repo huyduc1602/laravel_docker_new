@@ -1,0 +1,100 @@
+/Facility:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    nameEn:
+      type: string
+    postCode:
+      type: string
+    prefecture:
+      type: string
+    city:
+      type: string
+    address:
+      type: string
+    price:
+      type: integer
+    area:
+      type: string
+    title1:
+      type: string
+    description1:
+      type: string
+    title2:
+      type: string
+    description2:
+      type: string
+    traffics:
+      type: array
+      items:
+        $ref: '#~1FacilityTraffic'
+    images:
+      type: array
+      items:
+        $ref: '#~1FacilityImage'
+    devices:
+      type: array
+      items:
+        $ref: '#~1FacilityDevice'
+    floors:
+      type: array
+      items:
+        $ref: '#~1FacilityFloor'
+/FacilityTraffic:
+  type: object
+  properties:
+    id:
+      type: integer
+    description:
+      type: string
+/FacilityImage:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    type:
+      type: integer
+    typeLabel:
+      type: string
+    path:
+      type: string
+      example: 'http://localhost:8006/storage/demo/demo-1.jpg'
+/FacilityDevice:
+  type: object
+  properties:
+    id:
+      type: integer
+    type:
+      type: integer
+    typeLabel:
+      type: string
+    device:
+      $ref: '#~1Device'
+    quantity:
+      type: integer
+    note:
+      type: string
+/Device:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    note:
+      type: string
+/FacilityFloor:
+  type: object
+  properties:
+    id:
+      type: integer
+    floorNumber:
+      type: string
+    map:
+      type: string
+      example: 'http://localhost:8006/storage/demo/map.jpg'

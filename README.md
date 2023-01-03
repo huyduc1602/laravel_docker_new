@@ -13,7 +13,7 @@ docker-compose up -d
 folder.(`cd` to project an run terminal)
 
 ```bash
-docker exec -it trainning-php bash
+docker exec -it training-php bash
 ```
 4. Copy `.env.example` to `.env` then update some environment variables in this file such as `APP_URL, DB_DATABASE,...`,
 
@@ -29,7 +29,7 @@ php artisan migrate
 
 php artisan db:seed
 
-cp -rf resources/images/* storage/app/trainning
+cp -rf resources/images/* storage/app/training
 
 php artisan storage:link
 ```

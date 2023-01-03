@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: 'HR Frontier'
+  description: 'This is a documentation of HR_Frontier API.'
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8006/api/admin'
+    description: 'Localhost api'
+paths:
+  /auth/login:
+    $ref: 'admin-docs/auth.yaml#/~1login'
+  /auth/logout:
+    $ref: 'admin-docs/auth.yaml#/~1logout'
+  /auth/forgot-password:
+    $ref: 'admin-docs/auth.yaml#/~1forgot-password'
+  /auth/me:
+    $ref: 'admin-docs/auth.yaml#/~1me'
+  /auth/reset-password:
+    $ref: 'admin-docs/auth.yaml#/~1reset-password'
+  /system-users:
+    $ref: 'admin-docs/system-users.yaml#/~1list'
+  /system-users/change-password:
+    $ref: 'admin-docs/system-users.yaml#/~1change-password'
+  /system-users/create:
+    $ref: 'admin-docs/system-users.yaml#/~1create'
+  /system-users/{id}/edit:
+    $ref: 'admin-docs/system-users.yaml#/~1%7Bid%7D~1edit'
+  /company-users:
+    $ref: 'admin-docs/company-users.yaml#/~1list'
+  /company-users/{companyUserId}:
+    $ref: 'admin-docs/company-users.yaml#/~1%7BcompanyUserId%7D'
+  /company-users/change-password:
+    $ref: 'admin-docs/company-users.yaml#/~1change-password'
+  /company/get-companies:
+    $ref: 'admin-docs/company.yaml#/~1get-companies'
+  /department/get-department1:
+    $ref: 'admin-docs/department.yaml#/~1get-department1'
+  /department/get-department2:
+    $ref: 'admin-docs/department.yaml#/~1get-department2'
+  /department/get-department3:
+    $ref: 'admin-docs/department.yaml#/~1get-department3'
+  /code/get-codes:
+    $ref: 'admin-docs/code.yaml#/~1get-codes'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+tags:
+  - name: Authentication
+    description: 'Check admin has logged or not'
+  - name: System Users
+    description: 'List apis for system users'
+  - name: Company Users
+    description: 'List apis for company users'
+  - name: Company
+    description: 'List apis for company'
+  - name: Department
+    description: 'List api for department'
+  - name: Code
+    description: 'List api for code'
+externalDocs:
+  description: 'Find out more about Swagger'
+  url: 'http://swagger.io'

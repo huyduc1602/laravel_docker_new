@@ -1,0 +1,216 @@
+/register:
+  post:
+    tags:
+      - Authentication
+    summary: 'Register a user'
+    description: 'Register a user'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+              password_confirmation:
+                description: 'Confirm password again.'
+                type: string
+    responses:
+      '200':
+        description: 'User successfully registered'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'User successfully registered'
+                user:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    updated_at:
+                      type: string
+                    created_at:
+                      type: string
+                    id:
+                      type: string
+      '422':
+        description: 'The given data was invalid'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'The given data was invalid'
+                errors:
+                  type: object
+                  properties:
+                    email:
+                      type: array
+                      items:
+                        type: string
+                      example: [ 'The email has already been taken.' ]
+/login:
+  post:
+    tags:
+      - Authentication
+    summary: 'User login'
+    description: 'User login'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+    responses:
+      '200':
+        description: 'User successfully registered'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0OTEyNTc2OCwiZXhwIjoxNjQ5MTI5MzY4LCJuYmYiOjE2NDkxMjU3NjgsImp0aSI6Imo4R0pDS25tWW82TFRlMTQiLCJzdWIiOjMsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.yV47isbYExqgfwqD3nSdyp0gRicyJu3VAM0d6E6D188'
+                token_type:
+                  type: string
+                  example: 'bearer'
+                expires_in:
+                  type: integer
+                  example: 3600
+      '400':
+        description: 'Login failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: 'Unauthorized'
+/logout:
+  post:
+    tags:
+      - Authentication
+    summary: 'User logout'
+    description: 'User logout'
+    responses:
+      '200':
+        description: 'Successfully logged out'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Successfully logged out'
+      '400':
+        description: 'Logout failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: 'Unauthenticated.'
+    security:
+      - bearerAuth: [ ]
+/me:
+  post:
+    tags:
+      - Authentication
+    summary: 'Get information of current user'
+    description: 'Get information of current user'
+    responses:
+      '200':
+        description: 'Get information successfully'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                name:
+                  type: string
+                  example: 'User 1'
+                email:
+                  type: string
+                  example: 'user1@localhost:8001'
+                email_verified_at:
+                  type: string
+                  example: null
+                created_at:
+                  type: string
+                  example: '2022-04-04T07:25:21.000000Z'
+                updated_at:
+                  type: string
+                  example: '2022-04-04T07:25:21.000000Z'
+      '400':
+        description: 'Get information failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: 'Unauthenticated.'
+    security:
+      - bearerAuth: [ ]
+/refresh:
+  post:
+    tags:
+      - Authentication
+    summary: 'Refresh token for current user'
+    description: 'Refresh token for current user'
+    responses:
+      '200':
+        description: 'Refresh token successfully'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+                  example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMVwvYXBpXC9hdXRoXC9yZWZyZXNoIiwiaWF0IjoxNjQ5MTI3NDUwLCJleHAiOjE2NDkxMzE0MjksIm5iZiI6MTY0OTEyNzgyOSwianRpIjoiVFNzWTVrdktibkh1UGhvVCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.2o4KYJlVSGApDTpkhfT77FZCB_w6_sUvTO3KJn1YtpI'
+                token_type:
+                  type: string
+                  example: 'bearer'
+                expires_in:
+                  type: integer
+                  example: 3600
+      '400':
+        description: 'Refresh token failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: 'Unauthenticated.'
+    security:
+      - bearerAuth: [ ]

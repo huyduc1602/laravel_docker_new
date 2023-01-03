@@ -6,8 +6,8 @@ services:
     build:
       context: .
       dockerfile: php/Dockerfile
-    image: trainning/php
-    container_name: trainning-php
+    image: training/php
+    container_name: training-php
     restart: unless-stopped
     tty: true
     environment:
@@ -23,7 +23,7 @@ services:
   #Nginx Service
   webserver:
     image: nginx:alpine
-    container_name: trainning-webserver
+    container_name: training-webserver
     restart: unless-stopped
     tty: true
     ports:
@@ -38,13 +38,13 @@ services:
   #MySQL Service
   db:
     image: mysql:8.0.23
-    container_name: trainning-db
+    container_name: training-db
     restart: unless-stopped
     tty: true
     ports:
       - "4006:3306"
     environment:
-      MYSQL_DATABASE: trainningdb
+      MYSQL_DATABASE: trainingdb
       MYSQL_ROOT_PASSWORD: root@123
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql

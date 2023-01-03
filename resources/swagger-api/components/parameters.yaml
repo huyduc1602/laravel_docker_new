@@ -1,0 +1,156 @@
+/filterCompanyName:
+  name: 'filter[companyName]'
+  in: query
+  description: 'Filter data by company name'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: 'company name'
+/filterName:
+  name: 'filter[name]'
+  in: query
+  description: 'Filter data by name'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: 'name'
+/filterEmployeeNumber:
+  name: 'filter[employeeNumber]'
+  in: query
+  description: 'Filter data by employee number'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: 'employee number'
+/filterDepartmentName1:
+  name: 'filter[departmentName1]'
+  in: query
+  description: 'Filter data by department name1'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: 'department name1'
+/filterDepartmentName2:
+  name: 'filter[departmentName2]'
+  in: query
+  description: 'Filter data by department name2'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: 'department name2'
+/filterDepartmentName3:
+  name: 'filter[departmentName3]'
+  in: query
+  description: 'Filter data by department name3'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: 'department name3'
+/filterEmail:
+  name: 'filter[email]'
+  in: query
+  description: 'Filter data by email'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: 'email'
+/filterRoleId:
+  name: 'filter[roleId]'
+  in: query
+  description: 'Filter data by role id'
+  required: false
+  schema:
+    type: integer
+    enum: [2, 3]
+    default: 2
+/filterStatus:
+  name: 'filter[status]'
+  in: query
+  description: 'Filter data by status'
+  required: false
+  schema:
+    type: string
+    enum: ['null', 0, 1]
+    nullable: true
+    default: null
+/filterBookingDate:
+  name: 'filter[bookingDate]'
+  in: query
+  description: 'Filter data by booking date'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: '2022/01/01'
+/filterFromTime:
+  name: 'filter[fromTime]'
+  in: query
+  description: 'Filter data by from time'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: '01:15'
+/filterToTime:
+  name: 'filter[toTime]'
+  in: query
+  description: 'Filter data by to time'
+  required: false
+  schema:
+    type: string
+    nullable: true
+    example: '13:15'
+/filterRoomType:
+  name: 'filter[roomType]'
+  in: query
+  description: 'Filter data by room type'
+  required: false
+  schema:
+    type: string
+    enum: ['null', 0, 1]
+    nullable: true
+    default: null
+/filterRoomIdList:
+  name: 'filter[roomIdList]'
+  in: query
+  description: 'Filter data by room id list'
+  required: false
+  schema:
+    type: array
+    items:
+      type: integer
+    example: [1, 2, 3]
+/filterArea:
+  name: 'filter[area]'
+  in: query
+  description: 'Filter data by area'
+  required: false
+  schema:
+    type: array
+    items:
+      type: string
+    example: ['area 1', 'area 2']
+/page:
+  name: 'page'
+  in: query
+  description: 'Get data by page'
+  required: false
+  schema:
+    type: integer
+    example: 1
+/perPage:
+  name: 'perPage'
+  in: query
+  description: 'Get data by limit records'
+  required: false
+  schema:
+    type: integer
+    enum: [25, 50, 100]
+    default: 25

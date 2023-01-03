@@ -1,0 +1,316 @@
+/login:
+  post:
+    tags:
+      - Authentication
+    summary: 'Admin login'
+    description: 'Admin login'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+    responses:
+      '200':
+        description: 'Admin logged in successfully'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    info:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        roleId:
+                          type: integer
+                          example: 1
+                        email:
+                          type: string
+                          example: 'admin@tranning.com'
+                        companyId:
+                          type: integer
+                          example: 1
+                        firstName:
+                          type: string
+                          example: 'Administrator'
+                        firstNameKana:
+                          type: string
+                          example: null
+                        lastName:
+                          type: string
+                          example: 'Administrator'
+                        lastNameKana:
+                          type: string
+                          example: null
+                        birthday:
+                          type: string
+                          example: null
+                        age:
+                          type: string
+                          example: null
+                        jobType:
+                          type: string
+                          example: null
+                        status:
+                          type: integer
+                          example: 0
+                        statusLabel:
+                          type: string
+                          example: 'Inactive'
+                        deletedAt:
+                          type: string
+                          example: null
+                        created_at:
+                          type: string
+                          example: '2022-04-04T07:25:21.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2022-04-04T07:25:21.000000Z'
+                    accessToken:
+                      type: string
+                      example: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0OTEyNTc2OCwiZXhwIjoxNjQ5MTI5MzY4LCJuYmYiOjE2NDkxMjU3NjgsImp0aSI6Imo4R0pDS25tWW82TFRlMTQiLCJzdWIiOjMsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.yV47isbYExqgfwqD3nSdyp0gRicyJu3VAM0d6E6D188'
+                    tokenType:
+                      type: string
+                      example: 'bearer'
+                    expiresIn:
+                      type: integer
+                      example: 3600
+      '400':
+        description: 'Login failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: 'Unauthorized'
+/logout:
+  post:
+    tags:
+      - Authentication
+    summary: 'Admin logout'
+    description: 'Admin logout'
+    responses:
+      '200':
+        description: 'Successfully logged out'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: 'Successfully logged out'
+      '400':
+        description: 'Logout failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: 'Unauthenticated'
+    security:
+      - bearerAuth: []
+/forgot-password:
+  post:
+    tags:
+      - Authentication
+    summary: 'Admin forgot password'
+    description: 'Admin forgot password'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+    responses:
+      '200':
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: 'We have emailed your password reset link!'
+      '422':
+        description: 'Forgot password failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: object
+                  properties:
+                    email:
+                      type: array
+                      items:
+                        type: string
+                      example: ['Please wait before retrying.']
+                message:
+                  type: string
+                  example: 'The given data was invalid.'
+/me:
+  post:
+    tags:
+      - Authentication
+    summary: 'Get information of current admin'
+    description: 'Get information of current admin'
+    responses:
+      '200':
+        description: 'Get information successfully'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    roleId:
+                      type: integer
+                      example: 1
+                    email:
+                      type: string
+                      example: 'admin@training.com'
+                    companyId:
+                      type: integer
+                      example: 1
+                    firstName:
+                      type: string
+                      example: 'Administrator'
+                    firstNameKana:
+                      type: string
+                      example: null
+                    lastName:
+                      type: string
+                      example: 'Administrator'
+                    lastNameKana:
+                      type: string
+                      example: null
+                    birthday:
+                      type: string
+                      example: null
+                    age:
+                      type: string
+                      example: null
+                    jobType:
+                      type: string
+                      example: null
+                    status:
+                      type: integer
+                      example: 0
+                    statusLabel:
+                      type: string
+                      example: 'Inactive'
+                    deletedAt:
+                      type: string
+                      example: null
+                    created_at:
+                      type: string
+                      example: '2022-04-04T07:25:21.000000Z'
+                    updated_at:
+                      type: string
+                      example: '2022-04-04T07:25:21.000000Z'
+      '401':
+        description: 'Get information failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: 'Unauthenticated.'
+    security:
+      - bearerAuth: []
+/reset-password:
+  post:
+    tags:
+      - Authentication
+    summary: 'Admin reset password'
+    description: 'Admin reset password'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+              passwordConfirmation:
+                type: string
+    responses:
+      '200':
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: boolean
+                  example: false
+                message:
+                  type: string
+                  example: 'Your password has been reset!'
+      '422':
+        description: 'Reset password failed'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'The given data was invalid.'
+                errors:
+                  type: object
+                  properties:
+                    email:
+                      type: array
+                      items:
+                        type: string
+                      example: ['This password reset token is invalid.']
