@@ -1,8 +1,9 @@
-src/node_modules
-src/public/hot
-src/public/storage
-src/storage/*.key
-src/vendor
+/node_modules
+/public/hot
+/public/storage
+/public/users
+/storage/*.key
+/vendor
 .env
 .env.backup
 .phpunit.result.cache
@@ -13,7 +14,8 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-mysql.sock
-db
-db_test
+/storage/api-docs/
 composer.lock
+yarn.lock
+public/css
+public/js

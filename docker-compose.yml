@@ -1,52 +1,64 @@
-version: "3.9"
-networks:
-  lrl:
-    driver: bridge
+version: '3'
 services:
-  nginx:
-    image: nginx:1.23.1-alpine
-    ports:
-      - "8000:80"
-    volumes:
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-      - ./src/public:/var/www/laravel/public
-    links:
-      - phpfpm
-    depends_on:
-      - phpfpm
-    networks:
-      - lrl
-  phpfpm:
+
+  #PHP Service
+  app:
     build:
-      context: php
-      dockerfile: Dockerfile
-    volumes:
-      - ./src:/var/www/laravel
-    links:
-      - mysql
-    depends_on:
-      - mysql
+      context: .
+      dockerfile: php/Dockerfile
+    image: trainning/php
+    container_name: trainning-php
+    restart: unless-stopped
+    tty: true
     environment:
-      - DB_HOST=mysql
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root123
-      - REDIS_HOST=redis
-    networks:
-      - lrl
-  mysql:
-    image: mysql:8.0.30
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html
     volumes:
-      - ./db:/var/lib/mysql
+      - ./:/var/www/html
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: trainning-webserver
+    restart: unless-stopped
+    tty: true
     ports:
-      - "3406:3306"
+      - "8006:80"
+      - "4436:443"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  #MySQL Service
+  db:
+    image: mysql:8.0.23
+    container_name: trainning-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "4006:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=root123
-      - MYSQL_DATABASE=ids
+      MYSQL_DATABASE: trainningdb
+      MYSQL_ROOT_PASSWORD: root@123
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql-files/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - lrl
-  redis:
-    image: redis:5.0-alpine
-    ports:
-      - "5379:6379"
-    networks:
-      - lrl
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
