@@ -1,0 +1,15 @@
+const HttpStatus = {
+    SUCCESS: 200,
+    ACCEPTED: 202,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    FORBIDDEN: 403,
+    NOT_FOUND: 404,
+    NOT_ACCEPTABLE: 406,
+    CONFLICT: 409,
+    UNPROCESSABLE_CONTENT: 422,
+    SERVER_ERROR: 500,
+    SERVER_TIMEOUT: 504,
+};
+
+export default HttpStatus;

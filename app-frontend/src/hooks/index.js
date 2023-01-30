@@ -1,0 +1,1 @@
+export { default as useAppTranslation } from '@/hooks/useAppTranslation';
