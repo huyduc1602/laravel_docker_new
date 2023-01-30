@@ -1,0 +1,130 @@
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #EAF2FA !important;
+}
+
+h1 {
+    background-color: #036EB8;
+    margin-bottom: 0 !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 0;
+    text-align: center;
+    background-color: #81B2DF;
+    color: white;
+    margin-bottom: 0 !important;
+    font-size: 15px !important;
+    font-weight: bolder;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bolder;
+}
+
+.container {
+    justify-content: center;
+    width: 100% !important;
+    margin-bottom: 0 !important;
+}
+
+.container .login-form {
+    display: flex;
+    justify-content: center;
+}
+
+.container .form-horizontal {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.container .form-group {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.container .form-group .col-form-label {
+    width: 120px;
+}
+
+.container .form-group .form-control {
+    width: 80%;
+    margin-right: 200px;
+
+}
+
+.container .button-login {
+    justify-content: center;
+    background-color: #FF9A05;
+    border: 2px solid #EE7E2D;
+    border-radius: 5px;
+    width: 20%;
+    color: white;
+    margin-top: 10px !important;
+}
+
+.container h3 {
+    text-align: center;
+    margin-top: 20px;
+    width: 80%;
+    border: 3px solid #036EB8;
+    background-color: white;
+    color: #036EB8;
+    margin: 30px auto;
+    font-size: 20px;
+    padding: 5px 5px;
+}
+
+.container .log .table {
+    width: 80%;
+    margin: 10px auto;
+}
+
+.container .log .table thead {
+    background-color: #81B2DF;
+    color: white;
+    text-align: center;
+}
+
+.container .log .table tbody {
+    background-color: white;
+    text-align: center;
+}
+
+.container .log .table tbody a {
+    text-decoration: none;
+    background-color: #BFBFBF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #949494;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.container .log .table tbody th:first-child {
+    font-weight: 400;
+}
+
+.container .log .table tbody td:nth-child(2) {
+    font-weight: 400;
+    text-align: left;
+}
+
+.container .log .table tbody td:nth-child(3) {
+    width: 80px;
+}
+
+.container .link {
+    margin-bottom: 50px !important;
+}
+
+.show-modal {
+    background-color: #BFBFBF;
+    color: white;
+    border: 1px solid #A6A6A6;
+    border-radius: 5px;
+    padding: 5px 12px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
